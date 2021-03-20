@@ -1,3 +1,12 @@
+SELECT a.attname, t.typname, t.typalign, t.typlen
+  FROM pg_class c
+  JOIN pg_attribute a ON (a.attrelid = c.oid)
+  JOIN pg_type t ON (t.oid = a.atttypid)
+ WHERE c.relname = 'user_order'
+   AND a.attnum >= 0
+ ORDER BY t.typlen DESC;
+
+
 CREATE TABLE network_connection (
     id SERIAL, -- typelen = , typealign = 
     source macaddr NOT NULL,
